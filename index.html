@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arsalan Gundroo AI PM</title>
+<meta name="description" content="Arsalan Gundroo, AI product manager for agents and evals in the San Francisco Bay Area.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: one calm reading column, numbered sections, projects that open into Problem / What I Built / PM Instinct. */
+:root{
+  /* One deep theme for every viewer: midnight navy, warm gold accent, teal for labels. */
+  --bg:#0a1020;
+  --tint:#121b30;
+  --line:#22304a;
+  --ink:#eef2f8;
+  --muted:#9fb0c8;
+  --accent:#e8b45a;
+  --accent2:#5ec8c0;
+  --font-display:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
+  --font-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg) radial-gradient(1100px 520px at 78% -8%,rgba(94,200,192,0.13),transparent 62%) no-repeat;color:var(--ink);font-family:var(--font-body);font-size:18px;line-height:1.62}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3,h4{font-family:var(--font-display);margin:0;line-height:1.15;text-wrap:balance}
+p{margin:0}
+ul{margin:0;padding-left:1.15em;display:grid;gap:6px}
+
+.col{max-width:820px;margin:0 auto;padding:0 22px}
+
+nav.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav.top .col{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+nav.top .name{font-family:var(--font-display);font-weight:700;color:var(--ink);text-decoration:none}
+nav.top .links{display:flex;gap:22px;flex-wrap:wrap;font-size:0.95rem}
+nav.top .links a{color:var(--muted);text-decoration:none}
+nav.top .links a:hover{color:var(--accent)}
+
+.eyebrow{font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
+.hero{padding:88px 0 72px;display:grid;gap:22px}
+.hero h1{font-size:clamp(2.5rem,6.5vw,4.1rem);font-weight:700;letter-spacing:-0.025em}
+.hero h1 em{font-style:italic;font-weight:600;color:var(--accent)}
+.hero p.intro{font-size:1.2rem;color:var(--muted);max-width:58ch}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:10px 18px;border-radius:999px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600;font-size:0.98rem}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.solid:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+
+section.sec{padding:64px 0;border-top:1px solid var(--line);display:grid;gap:30px;scroll-margin-top:60px}
+.sec-head{display:flex;align-items:baseline;gap:14px}
+.sec-head .n{font-family:var(--font-mono);font-size:0.85rem;color:var(--accent2)}
+.sec-head h2{font-size:clamp(1.7rem,3.6vw,2.2rem);font-weight:700;letter-spacing:-0.015em}
+
+.job{display:grid;gap:10px;padding-bottom:26px;border-bottom:1px dashed var(--line)}
+.job:last-child{border-bottom:0;padding-bottom:0}
+.job .meta{font-family:var(--font-mono);font-size:0.8rem;color:var(--muted)}
+.job .title{font-family:var(--font-display);font-weight:600;font-size:1.15rem}
+.items{display:grid;gap:12px;margin-top:4px}
+.job p.role{color:var(--muted);font-size:1.02rem;max-width:64ch}
+.item h3{font-size:1.02rem;font-weight:600}
+.item p{color:var(--muted);font-size:1rem}
+.item b,.num{font-family:var(--font-mono);font-weight:500;font-size:0.92em;color:var(--ink);font-variant-numeric:tabular-nums}
+
+.project{display:grid;gap:12px;padding:26px 0;border-bottom:1px solid var(--line)}
+.project:first-of-type{padding-top:0}
+.project:last-of-type{border-bottom:0}
+.project .cat{font-family:var(--font-mono);font-size:0.78rem;color:var(--accent2);letter-spacing:0.03em}
+.project h3{font-size:1.45rem;font-weight:700;letter-spacing:-0.01em}
+.project .flag{display:inline-block;margin-left:8px;vertical-align:middle;font-family:var(--font-mono);font-size:0.7rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:2px 8px}
+.project .summary{font-size:1.08rem}
+.metrics{display:flex;flex-wrap:wrap;gap:10px}
+.metric{background:var(--tint);border:1px solid var(--line);border-radius:10px;padding:10px 14px;display:grid;gap:2px;min-width:120px}
+.metric b{color:var(--accent);font-family:var(--font-mono);font-weight:500;font-size:1.25rem;font-variant-numeric:tabular-nums}
+.metric span{font-size:0.85rem;color:var(--muted);line-height:1.35}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-family:var(--font-mono);font-size:0.75rem;border:1px solid rgba(94,200,192,0.35);background:rgba(94,200,192,0.08);border-radius:6px;padding:3px 8px;color:var(--accent2)}
+
+details{border-top:1px solid var(--line);padding-top:12px}
+summary{cursor:pointer;list-style:none;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:8px;font-size:0.98rem}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";font-family:var(--font-mono);display:inline-grid;place-items:center;width:20px;height:20px;border:1px solid var(--accent);border-radius:50%;font-size:0.85rem;line-height:1}
+details[open] summary::before{content:"\2212"}
+details[open] summary .closed{display:none}
+details:not([open]) summary .open{display:none}
+.detail{display:grid;gap:22px;padding-top:18px}
+.detail h4{font-size:0.82rem;font-family:var(--font-mono);font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:8px}
+.detail p,.detail li{font-size:1rem}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:0.92rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--font-display);font-weight:600;font-size:0.85rem;background:var(--tint)}
+tr:last-child td{border-bottom:0}
+td.r{font-family:var(--font-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.note{font-size:0.92rem;color:var(--muted);border-left:3px solid var(--line);padding-left:12px}
+
+.about{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:start}
+@media (max-width:600px){.about{grid-template-columns:1fr}}
+.avatar{width:150px;height:150px;border-radius:50%;background:var(--tint);display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:2.6rem;color:var(--accent);border:1px solid var(--line)}
+.about .text{display:grid;gap:14px}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.skills h3,.edu h3{font-size:1rem;font-weight:600;margin-bottom:8px}
+.skills li,.edu li{font-size:0.98rem;color:var(--muted)}
+.edu ul{list-style:none;padding:0}
+
+.contact h2 em{font-style:italic;color:var(--accent)}
+.contact .open{font-weight:600;font-size:1.1rem}
+.social{display:flex;flex-wrap:wrap;gap:22px;font-size:1.05rem}
+.social a{text-decoration:none;font-weight:600}
+.social a:hover{text-decoration:underline}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:0.9rem}
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="Primary">
+  <div class="col">
+    <a class="name" href="#hero">Arsalan Gundroo</a>
+    <div class="links">
+      <a href="#work">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="col">
+  <header class="hero" id="hero">
+    <div class="eyebrow">AI PM for Agents and Evals · San Francisco Bay Area</div>
+    <h1>Building AI agents <em>people can trust to act.</em></h1>
+    <p class="intro">I take agentic AI products from 0 to 1: scoping the problem, designing the guardrails, and making quality measurable with Evals, so teams can ship AI that acts, delights the users and maintains profitability.</p>
+    <div class="btns">
+      <a class="btn solid" href="#projects">See my projects</a>
+      <a class="btn" href="#contact">Let's talk</a>
+    </div>
+  </header>
+
+  <section class="sec" id="work">
+    <div class="sec-head"><span class="n">01</span><h2>Experience</h2></div>
+
+    <div class="job">
+      <div class="meta">Bosch USA · Sunnyvale, CA · Aug 2022 – Present</div>
+      <div class="title">AI Product Manager</div>
+      <p class="role">I lead 0→1 and scaled AI products for enterprise workflows, from agentic systems to LLM-powered tools. I'm a hands-on builder and build most of the prototypes for new ideas myself. I own discovery, PRDs, evals and guardrails, and work with engineering, security, legal and finance to take products from prototype to production.</p>
+    </div>
+
+    <div class="job">
+      <div class="meta">Advisory boards</div>
+      <div class="title">Startup Advisor</div>
+      <p class="role">Advisory board member for an AI observability startup and for a payments and money-transfer startup, advising on product strategy and AI.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="projects">
+    <div class="sec-head"><span class="n">02</span><h2>Projects</h2></div>
+
+    <article class="project" id="b2b-agent">
+      <div class="cat">Agents · Evals · Guardrails · B2B Commerce</div>
+      <h3>B2B Ordering &amp; Diagnostics Agent<span class="flag">Flagship</span></h3>
+      <p class="summary">An AI agent that turns a contractor's or property manager's request into a correct, compatible, policy-approved order of parts, tools and installer services, and diagnoses faults from photos and telemetry.</p>
+      <div class="metrics">
+        <div class="metric"><b>804</b><span>hand-labeled eval samples</span></div>
+        <div class="metric"><b>43</b><span>evals in the catalog</span></div>
+        <div class="metric"><b>25</b><span>LLM judges calibrated against human labels</span></div>
+      </div>
+      <details open>
+        <summary><span class="open">Hide details</span><span class="closed">View details</span></summary>
+        <div class="detail">
+          <div>
+            <h4>The Problem</h4>
+            <p>Business buyers lose time and money to one question: which part fits which asset. Crews ask by description ("the fine blade for the 18V saw"), the same appliance model has revisions that take different parts, approvals live in email, and gas or sealed-system repairs legally need a certified installer. A wrong part means a return trip, or a safety hazard.</p>
+          </div>
+          <div>
+            <h4>What I Built</h4>
+            <ul>
+              <li>The PRD, agent architecture requirements and product policy for an agent that identifies the asset, verifies fit, checks company spend policy, then buys or books after approval.</li>
+              <li>Layered guardrails: deterministic fitment, spend and safety checks the model can't override; a quarantined reading agent with no tools for untrusted content like reseller listings and photos; and human confirmation on every order, with approver sign-off on exceptions.</li>
+              <li>The eval strategy end to end: a flow-based data plan of 600+ samples across 40+ user flows, a 43-eval catalog of code checks and 25 LLM judges, each calibrated against hand-labeled samples, plus labeling guides.</li>
+              <li>A 500-case prompt-injection stress set that runs on every model in use, including backup models.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>PM Instinct Behind It</h4>
+            <ul>
+              <li><strong>The model proposes, code verifies.</strong> A source of truth already exists for fit, policy and price, and a 99.5% fitment-precision bar can't rest on the model never making a mistake.</li>
+              <li><strong>Verified correct, not "marked done."</strong> The north star is a weekly human audit of 400 orders: right SKU, confirmed fit, within policy, not returned for fit in 30 days.</li>
+              <li><strong>Autonomy is earned.</strong> v0 recommends, v1 buys after one-click approval, v2 auto-buys inside policy.</li>
+              <li><strong>Limit what the reading agent can do instead of trusting filters.</strong> Outside content can inform a recommendation but can never trigger an action.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>LLM Judges Calibrated</h4>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Judge</th><th>What it scores</th></tr></thead>
+                <tbody>
+                  <tr><td>Context use</td><td>Retrieval completeness, context faithfulness, coverage, candidate faithfulness</td></tr>
+                  <tr><td>System-state accuracy</td><td>Messages match the system of record</td></tr>
+                  <tr><td>Policy translation</td><td>Plain-English policy to rules: precision, completeness, faithfulness</td></tr>
+                  <tr><td>Unclear-input detection</td><td>Knows when diagnosis inputs are too thin to act on</td></tr>
+                  <tr><td>Message quality</td><td>Groundedness, precision, completeness</td></tr>
+                  <tr><td>Pre-order Q&amp;A</td><td>Groundedness, faithfulness, honesty</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="note">The judges are approved for regression testing during development; launch gating adds validation on production traces and a cross-model judge comparison.</p>
+          <div>
+            <h4>Targets and Open Problem</h4>
+            <p>Targets: verified-correct order rate <span class="num">95.8% → ≥97%</span>, order approval time <span class="num">2.5 days → &lt;4 hours</span>, fit-related returns <span class="num">3.1% → ≤2%</span>. Open problem: the diagnosis path is modeled at about <span class="num">$1.06</span> per completed order against a <span class="num">$0.60</span> target, and caching alone can't close the gap.</p>
+          </div>
+        </div>
+      </details>
+      <div class="tags"><span class="tag">Tool-calling agents</span><span class="tag">LLM-as-judge</span><span class="tag">Prompt-injection defense</span><span class="tag">Vision</span><span class="tag">Policy engine</span></div>
+    </article>
+
+    <article class="project" id="hitl">
+      <div class="cat">Bosch USA · Agents · Human in the Loop</div>
+      <h3>Self-Evolving Agentic AI Platform</h3>
+      <p class="summary">A human-in-the-loop platform that lets production AI agents keep improving from videos of experts correcting agent outputs.</p>
+      <div class="metrics">
+        <div class="metric"><b>+22%</b><span>accuracy on 2 production agentic systems</span></div>
+        <div class="metric"><b>3</b><span>customers onboarded in 2 months</span></div>
+      </div>
+      <details open>
+        <summary><span class="open">Hide details</span><span class="closed">View details</span></summary>
+        <div class="detail">
+          <div>
+            <h4>The Problem</h4>
+            <p>Agents in production lose accuracy as the data they see drifts or as they hit edge cases and unique scenarios, and expert corrections usually stay with the expert instead of reaching the agent.</p>
+          </div>
+          <div>
+            <h4>What I Built</h4>
+            <ul>
+              <li>Led product strategy for an automated human-in-the-loop learning platform that turns experts' correction workflows, captured on video, into a knowledge base for agent improvement.</li>
+              <li>Defined the feedback-loop architecture, the evaluation framework and reliability guardrails with engineering.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>PM Instinct Behind It</h4>
+            <p>An agent that learns from new data can also learn the wrong thing. Pairing the feedback loop with an evaluation framework and guardrails keeps trust calibrated under drift and non-deterministic outputs, so each improvement is measured instead of assumed.</p>
+          </div>
+        </div>
+      </details>
+      <div class="tags"><span class="tag">Human-in-the-loop</span><span class="tag">Feedback loops</span><span class="tag">Agent evaluation</span><span class="tag">Data drift</span></div>
+    </article>
+
+    <article class="project" id="rag">
+      <div class="cat">Bosch USA · AI Recommendations · Discovery</div>
+      <h3>AI Product Recommendation Platform</h3>
+      <p class="summary">A RAG recommendation system across 10K+ products, taken from an ambiguous problem space through discovery, proof of concept and production.</p>
+      <div class="metrics">
+        <div class="metric"><b>92%</b><span>retrieval accuracy</span></div>
+        <div class="metric"><b>45%</b><span>efficiency gain</span></div>
+        <div class="metric"><b>$1M</b><span>business opportunity unlocked</span></div>
+      </div>
+      <details open>
+        <summary><span class="open">Hide details</span><span class="closed">View details</span></summary>
+        <div class="detail">
+          <div>
+            <h4>The Problem</h4>
+            <p>Finding the right product across a 10K+ item catalog was slow and depended on expert knowledge, and at the start it wasn't clear which AI approach, if any, would solve it.</p>
+          </div>
+          <div>
+            <h4>What I Built</h4>
+            <ul>
+              <li>Ran discovery end to end: validated the opportunity through interviews with users and stakeholders, then wrote the PRD.</li>
+              <li>Built the initial proofs of concept for customer demos myself, then guided experimentation through to a production RAG pipeline.</li>
+              <li>Set up a retrieval-quality eval suite to measure consistency across non-deterministic outputs.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>PM Instinct Behind It</h4>
+            <p>In an ambiguous space, I validated the problem with users before choosing a model approach, then compared competing AI approaches and tech stacks on ROI rather than novelty.</p>
+          </div>
+        </div>
+      </details>
+      <div class="tags"><span class="tag">Agentic RAG</span><span class="tag">RAG</span><span class="tag">Embeddings</span><span class="tag">Vector search</span><span class="tag">Retrieval evals</span><span class="tag">User research</span></div>
+    </article>
+  </section>
+
+  <section class="sec" id="about">
+    <div class="sec-head"><span class="n">03</span><h2>About</h2></div>
+    <div class="about">
+      <div class="avatar" aria-hidden="true">AG</div>
+      <div class="text">
+        <p>I'm a technical AI product manager with 6+ years of building AI products for enterprise workflows. I've shipped LLM, RAG and agentic systems serving 1,500+ users and driving $600K+ in savings.</p>
+        <p>The work I enjoy most is the part between a demo and a product: deciding what the model should and shouldn't own, writing the evals that tell a team whether a change made things better, and designing the failure handling so users can trust what the AI does on their behalf.</p>
+      </div>
+    </div>
+    <div class="skills">
+      <div>
+        <h3>Product</h3>
+        <ul>
+          <li>0→1 discovery and user research</li>
+          <li>PRDs and acceptance criteria for AI</li>
+          <li>Eval design and LLM-as-judge</li>
+          <li>Guardrails and failure handling</li>
+          <li>Metrics, A/B tests and launch gates</li>
+          <li>Cost and latency budgets</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Technical</h3>
+        <ul>
+          <li>LLMs: GPT-4, Claude, Gemini</li>
+          <li>RAG, multi-agent systems, LangGraph</li>
+          <li>Prompt engineering and tool use</li>
+          <li>Python, SQL</li>
+          <li>ChromaDB, FAISS</li>
+          <li>Azure AI, GCP</li>
+        </ul>
+      </div>
+      <div class="edu">
+        <h3>Education</h3>
+        <ul>
+          <li>M.S. Computer Science, AI focus, University at Buffalo</li>
+          <li>B.S. Computer Science, University of Pune</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec contact" id="contact">
+    <div class="sec-head"><span class="n">04</span><h2>Building agents? <em>Reach out.</em></h2></div>
+    <p class="open">Open to AI PM roles on Agentic, platform and evals teams.</p>
+    <div class="social">
+      <a href="https://linkedin.com/in/arsalangundroo">LinkedIn ↗</a>
+      <a href="mailto:arsalangundroo@gmail.com">arsalangundroo@gmail.com ↗</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="col">© 2026 Arsalan Gundroo · San Francisco Bay Area</div>
+</footer>
+</body>
+</html>
